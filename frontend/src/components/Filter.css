@@ -1,0 +1,40 @@
+.allFilters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    margin: 25px;
+}
+
+.filterByType {
+    min-width: 258px;
+    margin: 15px;
+    height: 25px;
+}
+
+.searchName {
+    min-width: 250px;
+    margin: 15px;
+    height: 25px;
+}
+
+.searchCategory {
+    min-width: 250px;
+    margin: 15px;
+    height: 25px;
+}
+
+.sortButton {
+    min-width: 258px;
+    margin: 15px;
+    height: 25px;
+}
+
+.filterButton {
+    min-width: 258px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    height: 25px;
+    margin-left: 5px;
+}

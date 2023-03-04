@@ -9,11 +9,11 @@ export default function TransactionForm(props) {
 
   function onSubmitTransaction() {
     console.log({
-      id: Math.floor(Math.random() * 100),
+      id: 1,
       amount: amount,
       date: date,
       description: description,
-      category: category
+      category: props.categories.filter((cat) => cat.name === category)[0].id
     });
   }
 
