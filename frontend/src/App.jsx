@@ -3,13 +3,17 @@ import TransactionDisplay from "./components/TransactionDisplay";
 import TransactionForm from "./components/TransactionForm";
 import fetchCategories from "./api/fetchCategories";
 import fetchTransactions from "./api/fetchTransactions";
+import fetchDeleteTransaction from "./api/fetchDeleteTransaction";
 
 function App() {
   function editTransaction(e) {
     console.log("edit transaction" + e.target.id);
   }
   function deleteTransaction(e) {
-    console.log("delete transaction" + e.target.id);
+    console.log(e.target.id)
+    let array = e.target.id.split("")
+    console.log(array[array.length - 1])
+    fetchDeleteTransaction(array[array.length - 1]);
   }
 
   const [transactions, setTransactions] = useState([])
@@ -22,16 +26,12 @@ function App() {
 		loadTransactions();
 	}, [transactions]);
 
-  console.log(transactions)
-
   useEffect(() => {
     async function loadCategories() {
       setCategories(await fetchCategories(categories))
     }
     loadCategories()
   }, [categories])
-
-  console.log(categories)
 
   return (
     <main>

@@ -8,7 +8,6 @@ export default function TransactionForm(props) {
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
 
-  console.log(category)
 
   function onSubmitTransaction() {
     let object =  {
