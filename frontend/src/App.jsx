@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState , useEffect } from "react";
 import "./App.css";
 import TransactionDisplay from "./components/TransactionDisplay";
 import TransactionForm from "./components/TransactionForm";
 import Filter from "./components/Filter";
-
-import categories from "./data/categories.json";
-import transactions from "./data/transactions.json";
+import fetchCategories from "./api/fetchCategories";
+import fetchTransactions from "./api/fetchTransactions";
 
 function App() {
   function editTransaction(e) {
@@ -14,6 +13,28 @@ function App() {
   function deleteTransaction(e) {
     console.log("delete transaction" + e.target.id);
   }
+
+  const [transactions, setTransactions] = useState([])
+  const [categories, setCategories] = useState([])
+
+  useEffect(() => {
+		async function loadTransactions() {
+			setTransactions(await fetchTransactions(transactions));
+		}
+		loadTransactions();
+	}, [transactions]);
+
+  console.log(transactions)
+
+  useEffect(() => {
+    async function loadCategories() {
+      setCategories(await fetchCategories(categories))
+    }
+    loadCategories()
+  }, [categories])
+
+  console.log(categories)
+
   return (
     <main>
       <h1>Finance Manager App</h1>

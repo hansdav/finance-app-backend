@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./TransactionForm.css";
+import fetchAddTransaction from "../api/fetchAddTransaction";
 
 export default function TransactionForm(props) {
   const [date, setDate] = useState("");
@@ -7,14 +8,16 @@ export default function TransactionForm(props) {
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
 
+  console.log(category)
+
   function onSubmitTransaction() {
-    console.log({
-      id: 1,
+    let object =  {
       amount: amount,
       date: date,
       description: description,
       category: props.categories.filter((cat) => cat.name === category)[0].id
-    });
+    }
+    fetchAddTransaction(object)
   }
 
   return (
