@@ -1,69 +1,134 @@
 import { useState } from "react";
 import "./Filter.css";
+import fetchTransactions from "../api/fetchTransactions";
 
-export default function Filter() {
-    const [type, setType] = useState();
-    const [name, setName] = useState();
-    const [category, setCategory] = useState();
-    const [amount, setAmount] = useState();
-    const [date, setDate] = useState();
-    const [amountButtonText, setAmountButtonText] = useState("Amount ▼");
-    const [dateButtonText, setDateButtonText] = useState("Date ▼");
+export default function Filter(props) {
+  const [type, setType] = useState();
+  const [name, setName] = useState();
+  const [category, setCategory] = useState();
+  const [amount, setAmount] = useState("");
+  const [date, setDate] = useState("");
+  const [amountButtonText, setAmountButtonText] = useState("Amount ▼");
+  const [dateButtonText, setDateButtonText] = useState("Date ▼");
 
-    function sortAmount(e) {
-        if (e.target.value === "Amount ▼") {
-            setAmount("sortAescending");
-            setAmountButtonText("Amount ▲")
-        } else {
-            setAmount("sortDescending");
-            setAmountButtonText("Amount ▼")
-        }
+  async function sortAmount(e) {
+    console.log(e.target.value)
+    if (e.target.value === "sortDescending" || e.target.value === "" ) {
+      setAmount("sortAscending");
+      setAmountButtonText("Amount ▲");
+      setDate("")
+    } else if (e.target.value === "sortAscending" || e.target.value === "" ){
+      setAmount("sortDescending");
+      setAmountButtonText("Amount ▼");
+      setDate("")
     }
+    
+    let sortedAmount = await fetchTransactions({
+        type: type,
+        name: name,
+        category: category,
+        amount: amount,
+        date: date,
+      })
+      
+      props.onSetFiltersData(sortedAmount);
+  }
 
-    function sortDate(e) {
-        if (e.target.value === "Date ▼") {
-            setDate("sortAescending");
-            setDateButtonText("Date ▲")
-        } else {
-            setDate("sortDescending");
-            setDateButtonText("Date ▼")
-        }
+  function sortDate(e) {
+    console.log(e.target.value)
+    if (e.target.value === "sortDescending" || e.target.value === "" ) {
+      setDate("sortAescending");
+      setDateButtonText("Date ▲");
+      setAmount("")
+    } else if (e.target.value === "sortAscending" || e.target.value === "" ) {
+      setDate("sortDescending");
+      setDateButtonText("Date ▼");
+      setAmount("")
     }
+    fetchTransactions({
+        type: type,
+        name: name,
+        category: category,
+        amount: amount,
+        date: date,
+      })
+  }
 
-    function reset() {
-        setType();
-        setName();
-        setCategory();
-        setAmount();
-        setDate();
-    }
+  function reset() {
+    setType();
+    setName();
+    setCategory();
+    setAmount();
+    setDate();
+    fetchTransactions({
+        type: type,
+        name: name,
+        category: category,
+        amount: amount,
+        date: date,
+      })
+  }
 
-    function submitFilter() {
-        console.log({
-            type: type, 
-            name: name,
-            category: category,
-            amount: amount,
-            date: date
-        })
-    }
+  function submitFilter() {
+    console.log({
+      type: type,
+      name: name,
+      category: category,
+      amount: amount,
+      date: date,
+    });
+    fetchTransactions({
+        type: type,
+        name: name,
+        category: category,
+        amount: amount,
+        date: date,
+      })
+  }
 
   return (
     <div className="allFilters">
-        <h3>Filter transactions</h3>
+      <h3>Filter transactions</h3>
       <form>
-        <select className="filterByType" onChange={ (e)=> setType(e.target.value)}>
+        <select
+          className="filterByType"
+          onChange={(e) => setType(e.target.value)}
+        >
           <option>All</option>
           <option>Expences</option>
           <option>Income</option>
         </select>
-        <input className="searchName" placeholder="search for name" onChange={ (e)=> setName(e.target.value)} />
-        <input className="searchCategory" placeholder="search for category" onChange={ (e)=> setCategory(e.target.value)} />
+        <input
+          className="searchName"
+          placeholder="search for name"
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          className="searchCategory"
+          placeholder="search for category"
+          onChange={(e) => setCategory(e.target.value)}
+        />
       </form>
-      <button className="filterButton" onClick={()=> submitFilter()}>Filter</button>
-      <button className="sortButton" value={amountButtonText} onClick={(e)=> sortAmount(e)}>{amountButtonText}</button>
-        <button className="sortButton" value={dateButtonText} onClick={(e)=> sortDate(e)}>{dateButtonText}</button>
-        <button className="sortButton" onClick={ ()=>reset() }>Reset</button>
+      <button className="filterButton" onClick={() => submitFilter()}>
+        Filter
+      </button>
+      <button
+        className="sortButton"
+        value={amount}
+        onClick={(e) => sortAmount(e)}
+      >
+        {amountButtonText}
+      </button>
+      <button
+        className="sortButton"
+        value={date}
+        onClick={(e) => sortDate(e)}
+      >
+        {dateButtonText}
+      </button>
+      <button className="sortButton" onClick={() => reset()}>
+        Reset filter
+      </button>
     </div>
   );
 }

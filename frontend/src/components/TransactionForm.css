@@ -4,35 +4,48 @@
     align-items: center;
     width: 300px;
     margin: 25px;
+    color: rgb(83, 83, 83);
   }
   
   .TransactionForm-date {
     min-width: 250px;
     margin: 15px;
     height: 25px;
+    color: rgb(83, 83, 83);
   }
   
   .TransactionForm-text {
     min-width: 250px;
     margin: 15px;
     height: 25px;
+    color: rgb(83, 83, 83);
   }
   
   .TransactionForm-amount {
     min-width: 250px;
     margin: 15px;
     height: 25px;
+    color: rgb(83, 83, 83);
+  }
+
+  .TransactionForm-type {
+    min-width: 258px;
+    margin: 15px;
+    height: 28px;
+    color: rgb(83, 83, 83);
   }
   
   .TransactionForm-category {
     min-width: 258px;
     margin: 15px;
     height: 28px;
+    color: rgb(83, 83, 83);
   }
   
   .TransactionForm-button {
     min-width: 258px;
     margin: 15px;
     height: 25px;
+    color: rgb(83, 83, 83);
   }
   

@@ -4,9 +4,9 @@ import "./TransactionDisplay.css";
 export default function TransactionDisplay(props) {
   function styleAmount() {
     if (props.type === "Expence") {
-      return "red" 
+      return "red";
     } else {
-      return "green"
+      return "green";
     }
   }
   return (
@@ -18,7 +18,12 @@ export default function TransactionDisplay(props) {
         </div>
         <div className="TransactionDisplay-category">{props.category}</div>
       </div>
-      <div className="TransactionDisplay-amount" style={{color : styleAmount()}}>{props.type === "Income" ? props.amount : `-${props.amount}`}</div>
+      <div
+        className="TransactionDisplay-amount"
+        style={{ color: styleAmount() }}
+      >
+        {props.type === "Income" ? props.amount : `-${props.amount}`}
+      </div>
       <Button
         id={props.id}
         onButtonEvent={props.onEditButtonEvent}

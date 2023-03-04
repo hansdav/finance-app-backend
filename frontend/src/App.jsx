@@ -35,14 +35,12 @@ function App() {
 		loadTransactions();
 	}, []);
 
-  console.log(categories)
-
   return (
     <main>
       <h1>Finance Manager App</h1>
       <div className="financeManagerApp">
         <div className="menu">
-          <Filter />
+          <Filter onSetFilterData={setTransactions}/>
           <TransactionForm categories={categories} />
         </div>
         <div className="transactionsDisplay">
