@@ -3,19 +3,22 @@
     "amount": "+ 1500.00",
     "date": "2023-03-01",
     "description": "allowance",
-    "category": 1
+    "category": 1,
+    "type": "income"
 },
 {
     "id": 2, 
     "amount": "- 600.00",
     "date": "2023-03-03",
     "description": "rent",
-    "category": 2
+    "category": 2,
+    "type": "expense"
 },
 {
     "id": 3, 
     "amount": "- 59.99",
     "date": "2023-03-01",
     "description": "food",
-    "category": 3
+    "category": 3,
+    "type": "expense"
 }]
