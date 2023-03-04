@@ -7,6 +7,7 @@ export default function TransactionForm(props) {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
+  const [type, setType] = useState("");
 
 
   function onSubmitTransaction() {
@@ -14,6 +15,7 @@ export default function TransactionForm(props) {
       amount: amount,
       date: date,
       description: description,
+      type: type,
       category: props.categories.filter((cat) => cat.name === category)[0].id
     }
     fetchAddTransaction(object)
@@ -42,6 +44,14 @@ export default function TransactionForm(props) {
           className="TransactionForm-amount"
           onChange={(e) => setAmount(e.target.value)}
         />
+        <br/>
+        <select
+          className="TransactionForm-type"
+          onChange={(e) => setType(e.target.value)}
+        >
+          <option>Income</option>
+          <option>Expence</option>
+        </select>
         <br />
         <select
           className="TransactionForm-category"

@@ -4,30 +4,38 @@
     align-items: center;
     width: 300px;
     margin: 25px;
+    color: rgb(83, 83, 83);
 }
 
 .filterByType {
     min-width: 258px;
     margin: 15px;
     height: 25px;
+    color: rgb(83, 83, 83);
 }
 
 .searchName {
     min-width: 250px;
     margin: 15px;
     height: 25px;
+    color: rgb(83, 83, 83);
 }
 
 .searchCategory {
     min-width: 250px;
     margin: 15px;
     height: 25px;
+    color: rgb(83, 83, 83);
 }
 
 .sortButton {
     min-width: 258px;
-    margin: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 15px;
     height: 25px;
+    margin-left: 5px;
+    color: rgb(83, 83, 83);
 }
 
 .filterButton {
@@ -37,4 +45,9 @@
     margin-right: 15px;
     height: 25px;
     margin-left: 5px;
+    color: rgb(83, 83, 83);
+}
+
+h3 {
+    color: rgba(55, 0, 55, 0.7);
 }

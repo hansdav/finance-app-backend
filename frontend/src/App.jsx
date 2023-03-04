@@ -13,7 +13,7 @@ function App() {
   }
   function deleteTransaction(e) {
     console.log(e.target.id)
-    let array = e.target.id.split("")
+    let array = e.target.id.split("-")
     console.log(array[array.length - 1])
     fetchDeleteTransaction(array[array.length - 1]);
   }
@@ -22,18 +22,20 @@ function App() {
   const [categories, setCategories] = useState([])
 
   useEffect(() => {
-		async function loadTransactions() {
-			setTransactions(await fetchTransactions(transactions));
-		}
-		loadTransactions();
-	}, [transactions]);
-
-  useEffect(() => {
     async function loadCategories() {
       setCategories(await fetchCategories(categories))
     }
     loadCategories()
-  }, [categories])
+  }, [])
+
+  useEffect(() => {
+		async function loadTransactions() {
+			setTransactions(await fetchTransactions(transactions));
+		}
+		loadTransactions();
+	}, []);
+
+  console.log(categories)
 
   return (
     <main>
@@ -54,11 +56,13 @@ function App() {
                 date={transaction.date}
                 description={transaction.description}
                 amount={transaction.amount}
+                type={transaction.type}
                 color={
                   categories.filter(
                     (category) => category.id === transaction.category
                   )[0].color
                 }
+                category={categories.filter((category) => category.id === transaction.category)[0].name}
               />
             );
           })}

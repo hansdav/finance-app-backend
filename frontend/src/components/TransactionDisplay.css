@@ -4,6 +4,7 @@
     align-items: center;
     width: fit-content;
     margin: 15px;
+    color: white;
   }
   
   .TransactionDisplay-date {
@@ -17,10 +18,22 @@
     text-align: left;
     margin-top: 15px;
     margin-bottom: 15px;
+    font-weight: bolder;
+    font-size: large;
+  }
+
+  .TransactionDisplay-category {
+    width: 200px;
+    margin-left: 75px;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: x-small;
   }
   
   .TransactionDisplay-amount {
     width: 100px;
     margin: 15px;
+    text-align: end;
   }
   

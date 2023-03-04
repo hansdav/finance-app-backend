@@ -5,7 +5,7 @@ const fetchTransactions = async (parameters) => {
     if(parameters.type !== undefined) {
         url = `${baseUrl}?type=${parameters.type} `
     } else if(parameters.type !==undefined && parameters.category !== undefined) {
-        url = `${baseUrl}?tyoe=${parameters.type}&category=${parameters.category}`
+        url = `${baseUrl}?type=${parameters.type}&category=${parameters.category}`
     } else {
         url = baseUrl
     }
