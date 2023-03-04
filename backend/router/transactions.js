@@ -73,12 +73,12 @@ transactionsRouter.post("/", (req, res) => {
     fs.readFileSync("./data/transactions.json")
   );
   const newTransaction = req.body;
-  transactionsData.unshift(newTransaction);
   let maxId = 0;
   for (let transaction of transactionsData) {
     maxId = Math.max(maxId, transaction.id);
   }
   newTransaction.id = maxId + 1;
+  transactionsData.unshift(newTransaction);
   fs.writeFileSync(
     "./data/transactions.json",
     JSON.stringify(transactionsData)
