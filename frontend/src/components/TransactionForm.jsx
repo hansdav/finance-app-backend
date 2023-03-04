@@ -9,7 +9,7 @@ export default function TransactionForm(props) {
 
   function onSubmitTransaction() {
     console.log({
-      id: 1,
+      id: Math.floor(Math.random() * 100),
       amount: amount,
       date: date,
       description: description,
