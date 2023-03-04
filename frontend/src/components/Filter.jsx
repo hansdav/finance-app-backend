@@ -30,11 +30,11 @@ export default function Filter(props) {
         amount: amount,
         date: date,
       })
-      
+      // WHY ARE U NOT A FUNCTION ;_;
       props.onSetFiltersData(sortedAmount);
   }
 
-  function sortDate(e) {
+  async function sortDate(e) {
     console.log(e.target.value)
     if (e.target.value === "sortDescending" || e.target.value === "" ) {
       setDate("sortAescending");
@@ -45,31 +45,35 @@ export default function Filter(props) {
       setDateButtonText("Date ▼");
       setAmount("")
     }
-    fetchTransactions({
-        type: type,
-        name: name,
-        category: category,
-        amount: amount,
-        date: date,
-      })
+    let sortedAmount = await fetchTransactions({
+      type: type,
+      name: name,
+      category: category,
+      amount: amount,
+      date: date,
+    })
+    // WHY ARE U NOT A FUNCTION ;_;
+    props.onSetFiltersData(sortedAmount);
   }
 
-  function reset() {
+  async function reset() {
     setType();
     setName();
     setCategory();
     setAmount();
     setDate();
-    fetchTransactions({
-        type: type,
-        name: name,
-        category: category,
-        amount: amount,
-        date: date,
-      })
+    let sortedAmount = await fetchTransactions({
+      type: type,
+      name: name,
+      category: category,
+      amount: amount,
+      date: date,
+    })
+    // WHY ARE U NOT A FUNCTION ;_;
+    props.onSetFiltersData(sortedAmount);
   }
 
-  function submitFilter() {
+  async function submitFilter() {
     console.log({
       type: type,
       name: name,
@@ -77,13 +81,15 @@ export default function Filter(props) {
       amount: amount,
       date: date,
     });
-    fetchTransactions({
-        type: type,
-        name: name,
-        category: category,
-        amount: amount,
-        date: date,
-      })
+    let sortedAmount = await fetchTransactions({
+      type: type,
+      name: name,
+      category: category,
+      amount: amount,
+      date: date,
+    })
+    // WHY ARE U NOT A FUNCTION ;_;
+    props.onSetFiltersData(sortedAmount);
   }
 
   return (
