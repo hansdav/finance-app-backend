@@ -1,0 +1,30 @@
+.TransactionForm {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: 25px;
+}
+
+.TransactionForm-date {
+    min-width: 250px;
+    margin: 15px;
+    height: 25px;
+}
+
+.TransactionForm-text {
+    min-width: 250px;
+    margin: 15px;
+    height: 25px;
+}
+
+.TransactionForm-category {
+    min-width: 258px;
+    margin: 15px;
+    height: 25px;
+}
+
+.TransactionForm-button {
+    min-width: 258px;
+    margin: 15px;
+    height: 25px;
+}
