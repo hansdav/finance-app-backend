@@ -1,30 +1,38 @@
 .TransactionForm {
     display: flex;
     flex-direction: column;
-    width: 250px;
+    align-items: center;
+    width: 300px;
     margin: 25px;
-}
-
-.TransactionForm-date {
+  }
+  
+  .TransactionForm-date {
     min-width: 250px;
     margin: 15px;
     height: 25px;
-}
-
-.TransactionForm-text {
+  }
+  
+  .TransactionForm-text {
     min-width: 250px;
     margin: 15px;
     height: 25px;
-}
-
-.TransactionForm-category {
+  }
+  
+  .TransactionForm-amount {
+    min-width: 250px;
+    margin: 15px;
+    height: 25px;
+  }
+  
+  .TransactionForm-category {
     min-width: 258px;
     margin: 15px;
     height: 25px;
-}
-
-.TransactionForm-button {
+  }
+  
+  .TransactionForm-button {
     min-width: 258px;
     margin: 15px;
     height: 25px;
-}
+  }
+  

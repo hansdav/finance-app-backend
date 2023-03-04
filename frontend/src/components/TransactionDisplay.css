@@ -1,0 +1,26 @@
+.TransactionDisplay {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content;
+    margin: 15px;
+  }
+  
+  .TransactionDisplay-date {
+    width: 50px;
+    margin: 15px;
+  }
+  
+  .TransactionDisplay-description {
+    width: 200px;
+    margin-left: 75px;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .TransactionDisplay-amount {
+    width: 100px;
+    margin: 15px;
+  }
+  

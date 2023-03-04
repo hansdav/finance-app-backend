@@ -1,0 +1,18 @@
+[
+    {
+      "id": 1,
+      "name": "salary",
+      "color": "green"
+    },
+    {
+      "id": 2,
+      "name": "rent",
+      "color": "blue"
+    },
+    {
+      "id": 3,
+      "name": "groceries",
+      "color": "red"
+    }
+  ]
+  
