@@ -56,7 +56,7 @@ export default function TransactionForm(props) {
           defaultValue={type}
         >
           <option>Income</option>
-          <option>Expence</option>
+          <option>Expense</option>
         </select>
         <br />
         <select

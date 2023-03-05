@@ -101,7 +101,7 @@ export default function Filter(props) {
           onChange={(e) => setType(e.target.value)}
         >
           <option value={""}>All</option>
-          <option>Expence</option>
+          <option>Expense</option>
           <option>Income</option>
         </select>
         <input
