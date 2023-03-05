@@ -22,7 +22,8 @@ export default function TransactionDisplay(props) {
         className="TransactionDisplay-amount"
         style={{ color: styleAmount() }}
       >
-        {props.type === "Income" ? props.amount : `-${props.amount}`}
+        {/*props.type === "Income" ? props.amount : `-${props.amount}`*/}
+        {parseFloat(props.amount).toFixed(2)}
       </div>
       <Button
         id={props.id}

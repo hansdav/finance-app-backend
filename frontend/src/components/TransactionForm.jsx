@@ -12,7 +12,7 @@ export default function TransactionForm(props) {
 
   function onSubmitTransaction() {
     let object =  {
-      amount: amount,
+      amount: type === "Income" ? amount : `-${amount}`,
       date: date,
       description: description,
       type: type,
