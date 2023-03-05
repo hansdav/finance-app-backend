@@ -11,9 +11,9 @@ const fetchTransactions = async (parameters) => {
     } else if(parameters.category !== undefined && parameters.category !== "") {
         url = `${baseUrl}?category=${parameters.category}`
     } else if(parameters.amount !== undefined && parameters.amount !== "") {
-        url = `${baseUrl}?amount=${parameters.amount}`
+        url = `${baseUrl}?${parameters.amount}=amount`
     } else if(parameters.date !== undefined && parameters.date !== "") {
-        url = `${baseUrl}?date=${parameters.date}`
+        url = `${baseUrl}?${parameters.date}=date`
     } else {
         url = baseUrl
     }
@@ -27,11 +27,11 @@ const fetchTransactions = async (parameters) => {
     if (parameters.category !== undefined && !url.includes("?category") && parameters.category !== "") {
         url = `${url}&category=${parameters.category}`
     }
-    if(parameters.amount !== undefined && !url.includes("?amount") && parameters.amount !== "") {
-        url = `${url}&amount=${parameters.amount}`
+    if(parameters.amount !== undefined && !url.includes(`?${parameters.amount}=amount`) && parameters.amount !== "") {
+        url = `${url}&${parameters.amount}=amount`
     } 
-    if(parameters.date !== undefined && !url.includes("?date") && parameters.date !== "") {
-        url = `${url}&date=${parameters.date}`
+    if(parameters.date !== undefined && !url.includes(`?${parameters.date}=date`) && parameters.date !== "") {
+        url = `${url}&${parameters.date}=date`
     }
 
     console.log(url)
