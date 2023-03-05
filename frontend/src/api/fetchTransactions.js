@@ -4,11 +4,11 @@ const fetchTransactions = async (parameters) => {
 
     console.log(parameters)
 
-    if(parameters.type !== undefined) {
+    if(parameters.type !== undefined && parameters.type !== "") {
         url = `${baseUrl}?type=${parameters.type} `
-    } else if(parameters.name !== undefined) {
-        url = `${baseUrl}?name=${parameters.name}`
-    } else if(parameters.category !== undefined) {
+    } else if(parameters.description !== undefined && parameters.description !== "") {
+        url = `${baseUrl}?description=${parameters.description}`
+    } else if(parameters.category !== undefined && parameters.category !== "") {
         url = `${baseUrl}?category=${parameters.category}`
     } else if(parameters.amount !== undefined && parameters.amount !== "") {
         url = `${baseUrl}?amount=${parameters.amount}`
@@ -18,13 +18,13 @@ const fetchTransactions = async (parameters) => {
         url = baseUrl
     }
 
-    if (parameters.type !== undefined && !url.includes("?type")) {
+    if (parameters.type !== undefined && !url.includes("?type") && parameters.type !== "") {
         url = `${url}&type=${parameters.type} ` 
     } 
-    if (parameters.name !== undefined && !url.includes("?name")) {
-        url = `${url}&name=${parameters.name} ` 
+    if (parameters.description !== undefined && !url.includes("?description") && parameters.description !== "") {
+        url = `${url}&description=${parameters.description} ` 
     } 
-    if (parameters.category !== undefined && !url.includes("?category")) {
+    if (parameters.category !== undefined && !url.includes("?category") && parameters.category !== "") {
         url = `${url}&category=${parameters.category}`
     }
     if(parameters.amount !== undefined && !url.includes("?amount") && parameters.amount !== "") {

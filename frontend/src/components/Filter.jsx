@@ -4,7 +4,7 @@ import fetchTransactions from "../api/fetchTransactions";
 
 export default function Filter(props) {
   const [type, setType] = useState();
-  const [name, setName] = useState();
+  const [description, setDescription] = useState();
   const [category, setCategory] = useState();
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
@@ -25,7 +25,7 @@ export default function Filter(props) {
     
     let sortedAmount = await fetchTransactions({
         type: type,
-        name: name,
+        description: description,
         category: category,
         amount: amount,
         date: date,
@@ -47,7 +47,7 @@ export default function Filter(props) {
     }
     let sortedAmount = await fetchTransactions({
       type: type,
-      name: name,
+      description: description,
       category: category,
       amount: amount,
       date: date,
@@ -58,13 +58,13 @@ export default function Filter(props) {
 
   async function reset() {
     setType();
-    setName();
+    setDescription();
     setCategory();
     setAmount();
     setDate();
     let sortedAmount = await fetchTransactions({
       type: type,
-      name: name,
+      description: description,
       category: category,
       amount: amount,
       date: date,
@@ -76,14 +76,14 @@ export default function Filter(props) {
   async function submitFilter() {
     console.log({
       type: type,
-      name: name,
+      description: description,
       category: category,
       amount: amount,
       date: date,
     });
     let sortedAmount = await fetchTransactions({
       type: type,
-      name: name,
+      description: description,
       category: category,
       amount: amount,
       date: date,
@@ -100,14 +100,14 @@ export default function Filter(props) {
           className="filterByType"
           onChange={(e) => setType(e.target.value)}
         >
-          <option>All</option>
-          <option>Expences</option>
+          <option value={""}>All</option>
+          <option>Expence</option>
           <option>Income</option>
         </select>
         <input
           className="searchName"
-          placeholder="search for name"
-          onChange={(e) => setName(e.target.value)}
+          placeholder="search for description"
+          onChange={(e) => setDescription(e.target.value)}
         />
         <input
           className="searchCategory"

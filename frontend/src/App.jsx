@@ -41,7 +41,7 @@ function App() {
       <h1>Finance Manager App</h1>
       <div className="financeManagerApp">
         <div className="menu">
-          <Filter onSetFilterData={setTransactions} />
+          <Filter onSetFiltersData={setTransactions} />
           <TransactionForm categories={categories} />
         </div>
         <TransactionsDisplay
