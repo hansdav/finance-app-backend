@@ -29,7 +29,7 @@ export default function TransactionDisplay(props) {
         id={props.id}
         onButtonEvent={props.onEditButtonEvent}
         buttonText={
-          <span id={`edit${props.id}`} role="img" aria-label="edit">
+          <span id={`edit-${props.id}`} role="img" aria-label="edit">
             ✍
           </span>
         }
