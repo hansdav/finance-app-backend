@@ -6,12 +6,25 @@ import Filter from "./components/Filter";
 import fetchCategories from "./api/fetchCategories";
 import fetchTransactions from "./api/fetchTransactions";
 import fetchDeleteTransaction from "./api/fetchDeleteTransaction";
-
+import fetchAddTransaction from "./api/fetchAddTransaction";
+import fetchPatchTransaction from "./api/fetchPatchTransaction";
 
 function App() {
+  const [popupDisplay, setPopupDisplay] = useState("none");
+  const [popupData, setPopupData] = useState({
+    id:"",
+    date:"",
+    description:"",
+    category:"",
+    amount:"",
+    type:""
+})
   function editTransaction(e) {
-    console.log("edit transaction" + e.target.id);
+    setPopupDisplay("block");
+    console.log(transactions.filter((transaction) => Number(transaction.id) === Number(e.target.id.split("-")[1]))[0])
+    setPopupData(transactions.filter((transaction) => Number(transaction.id) === Number(e.target.id.split("-")[1]))[0]);
   }
+
   function deleteTransaction(e) {
     console.log(e.target.id);
     let array = e.target.id.split("-");
@@ -42,7 +55,16 @@ function App() {
       <div className="financeManagerApp">
         <div className="menu">
           <Filter onSetFiltersData={setTransactions} />
-          <TransactionForm categories={categories} />
+          <TransactionForm 
+            categories={categories}
+            date=""
+            description=""
+            category=""
+            amount=""
+            type="" 
+            title="Add new transaction"
+            buttonText="Add transaction" 
+            onFetch={fetchAddTransaction}/>
         </div>
         <TransactionsDisplay
           transactions={transactions}
@@ -50,6 +72,22 @@ function App() {
           editTransaction={(e) => editTransaction(e)}
           deleteTransaction={(e) => deleteTransaction(e)}
         />
+        <div className="popupBG" style={{display:popupDisplay}}>
+          <div className="popup" style={{display:popupDisplay}}>
+            <TransactionForm 
+            categories={categories}
+            id={popupData.id}
+            date={popupData.date}
+            description={popupData.description}
+            category={popupData.category}
+            amount={popupData.amount}
+            type={popupData.type}
+            title="Change transaction"
+            buttonText="Save"
+            onFetch={fetchPatchTransaction}
+            />
+          </div>
+        </div>
       </div>
     </main>
   );
