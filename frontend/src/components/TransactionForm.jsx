@@ -12,7 +12,7 @@ export default function TransactionForm(props) {
 
   function onSubmitTransaction() {
     let object =  {
-      amount: type === "Income" ? amount : `-${amount}`,
+      amount: type === "Income" ? amount : Number(`-${amount}`),
       date: date,
       description: description,
       type: type,
@@ -42,7 +42,7 @@ export default function TransactionForm(props) {
           type="text"
           placeholder="Enter amount"
           className="TransactionForm-amount"
-          onChange={(e) => setAmount(e.target.value)}
+          onChange={(e) => setAmount(Number(e.target.value))}
         />
         <br/>
         <select
