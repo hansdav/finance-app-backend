@@ -20,6 +20,7 @@ export default function TransactionForm(props) {
       category: props.categories.filter((cat) => cat.name === category)[0].id
     }
     props.onFetch(object)
+    props.onClose("none")
   }
 
   return (
