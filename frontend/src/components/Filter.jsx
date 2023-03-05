@@ -37,7 +37,7 @@ export default function Filter(props) {
   async function sortDate(e) {
     console.log(e.target.value)
     if (e.target.value === "sortDescending" || e.target.value === "" ) {
-      setDate("sortAescending");
+      setDate("sortAscending");
       setDateButtonText("Date ▲");
       setAmount("")
     } else if (e.target.value === "sortAscending" || e.target.value === "" ) {
