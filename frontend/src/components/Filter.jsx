@@ -11,85 +11,56 @@ export default function Filter(props) {
   const [amountButtonText, setAmountButtonText] = useState("Amount ▼");
   const [dateButtonText, setDateButtonText] = useState("Date ▼");
 
-  async function sortAmount(e) {
-    console.log(e.target.value)
-    if (e.target.value === "sortDescending" || e.target.value === "" ) {
-      setAmount("sortAscending");
-      setAmountButtonText("Amount ▲");
-      setDate("")
-    } else if (e.target.value === "sortAscending" || e.target.value === "" ){
-      setAmount("sortDescending");
-      setAmountButtonText("Amount ▼");
-      setDate("")
-    }
-    
-    let sortedAmount = await fetchTransactions({
-        type: type,
-        description: description,
-        category: category,
-        amount: amount,
-        date: date,
-      })
-      // WHY ARE U NOT A FUNCTION ;_;
-      props.onSetFiltersData(sortedAmount);
-  }
-
-  async function sortDate(e) {
-    console.log(e.target.value)
-    if (e.target.value === "sortDescending" || e.target.value === "" ) {
-      setDate("sortAscending");
-      setDateButtonText("Date ▲");
-      setAmount("")
-    } else if (e.target.value === "sortAscending" || e.target.value === "" ) {
-      setDate("sortDescending");
-      setDateButtonText("Date ▼");
-      setAmount("")
-    }
-    let sortedAmount = await fetchTransactions({
-      type: type,
-      description: description,
-      category: category,
-      amount: amount,
-      date: date,
-    })
-    // WHY ARE U NOT A FUNCTION ;_;
-    props.onSetFiltersData(sortedAmount);
-  }
-
-  async function reset() {
-    setType();
-    setDescription();
-    setCategory();
-    setAmount();
-    setDate();
-    let sortedAmount = await fetchTransactions({
-      type: type,
-      description: description,
-      category: category,
-      amount: amount,
-      date: date,
-    })
-    // WHY ARE U NOT A FUNCTION ;_;
-    props.onSetFiltersData(sortedAmount);
-  }
-
   async function submitFilter() {
-    console.log({
+    let sortedAmount = await fetchTransactions({
       type: type,
       description: description,
       category: category,
       amount: amount,
       date: date,
     });
-    let sortedAmount = await fetchTransactions({
-      type: type,
-      description: description,
-      category: category,
-      amount: amount,
-      date: date,
-    })
-    // WHY ARE U NOT A FUNCTION ;_;
     props.onSetFiltersData(sortedAmount);
+  }
+
+  function filterType(e) {
+    console.log(e.target.value)
+    setType(e.target.value);
+    submitFilter();
+  } 
+
+  function sortAmount(e) {
+    if (e.target.value === "sortDescending" || e.target.value === "") {
+      setAmount("sortAscending");
+      setAmountButtonText("Amount ▲");
+      setDate("");
+    } else if (e.target.value === "sortAscending" || e.target.value === "") {
+      setAmount("sortDescending");
+      setAmountButtonText("Amount ▼");
+      setDate("");
+    }
+    submitFilter();
+  }
+
+  function sortDate(e) {
+    if (e.target.value === "sortDescending" || e.target.value === "") {
+      setDate("sortAscending");
+      setDateButtonText("Date ▲");
+      setAmount("");
+    } else if (e.target.value === "sortAscending" || e.target.value === "") {
+      setDate("sortDescending");
+      setDateButtonText("Date ▼");
+      setAmount("");
+    }
+    submitFilter();
+  }
+
+  function reset() {
+    setType();
+    setDescription();
+    setCategory();
+    setAmount();
+    setDate();
+    submitFilter();
   }
 
   return (
@@ -98,7 +69,7 @@ export default function Filter(props) {
       <form>
         <select
           className="filterByType"
-          onChange={(e) => setType(e.target.value)}
+          onChange={(e) => filterType(e)}
         >
           <option value={""}>All</option>
           <option>Expense</option>
@@ -125,11 +96,7 @@ export default function Filter(props) {
       >
         {amountButtonText}
       </button>
-      <button
-        className="sortButton"
-        value={date}
-        onClick={(e) => sortDate(e)}
-      >
+      <button className="sortButton" value={date} onClick={(e) => sortDate(e)}>
         {dateButtonText}
       </button>
       <button className="sortButton" onClick={() => reset()}>
