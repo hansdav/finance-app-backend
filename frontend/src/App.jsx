@@ -67,7 +67,7 @@ function App() {
 	return (
 		<main>
 			<h1>Finance Manager App</h1>
-			<span>Current budget: {budget}</span>
+			<div id='budget'>Current budget: {budget}</div>
 			<div className='financeManagerApp'>
 				<div className='menu'>
 					<Filter onSetFiltersData={setTransactions} />
