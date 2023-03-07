@@ -35,13 +35,13 @@ function App() {
 		);
 	}
 
-  async function deleteTransaction(e) {
-    console.log(e.target.id);
-    let array = e.target.id.split("-");
-    console.log(array[array.length - 1]);
-    await fetchDeleteTransaction(array[array.length - 1]);
-    setTransactions(await fetchTransactions(transactions));
-  }
+	async function deleteTransaction(e) {
+		console.log(e.target.id);
+		let array = e.target.id.split('-');
+		console.log(array[array.length - 1]);
+		await fetchDeleteTransaction(array[array.length - 1]);
+		setTransactions(await fetchTransactions(transactions));
+	}
 
 	const [transactions, setTransactions] = useState([]);
 	const [categories, setCategories] = useState([]);
@@ -65,55 +65,57 @@ function App() {
 		loadTransactions();
 	}, []);
 
-  return (
-    <main>
-      <h1>Finance Manager App</h1>
-      <div className="financeManagerApp">
-        <div className="menu">
-          <Filter onSetFiltersData={setTransactions} />
-          <TransactionForm 
-            categories={categories}
-            id=""
-            date=""
-            description=""
-            category=""
-            amount=""
-            type="" 
-            title="Add new transaction"
-            buttonText="Add transaction" 
-            onFetch={fetchAddTransaction}
-            onClose={setPopupDisplay}
-            transactions={transactions}
-            setTransactions={setTransactions} />
-        </div>
-        <TransactionsDisplay
-          transactions={transactions}
-          categories={categories}
-          editTransaction={(e) => editTransaction(e)}
-          deleteTransaction={(e) => deleteTransaction(e)}
-        />
-        <div className="popupBG" style={{display:popupDisplay}}>
-          <div className="popup" style={{display:popupDisplay}}>
-            <TransactionForm 
-            categories={categories}
-            id={popupData.id}
-            date={popupData.date}
-            description={popupData.description}
-            category={popupData.category}
-            amount={popupData.amount}
-            type={popupData.type}
-            title="Change transaction"
-            buttonText="Save"
-            onFetch={fetchPatchTransaction}
-            onClose={setPopupDisplay}
-            transactions={transactions}
-            setTransactions={setTransactions}
-            />
-          </div>
-        </div>
-      </div>
-    </main>
-  );
+	return (
+		<main>
+			<h1>Finance Manager App</h1>
+			<div id='budget'>Current budget: {budget}</div>
+			<div className='financeManagerApp'>
+				<div className='menu'>
+					<Filter onSetFiltersData={setTransactions} />
+					<TransactionForm
+						categories={categories}
+						id=''
+						date=''
+						description=''
+						category=''
+						amount=''
+						type=''
+						title='Add new transaction'
+						buttonText='Add transaction'
+						onFetch={fetchAddTransaction}
+						onClose={setPopupDisplay}
+					/>
+					transactions={transactions}
+					setTransactions={setTransactions}
+				</div>
+				<TransactionsDisplay
+					transactions={transactions}
+					categories={categories}
+					editTransaction={(e) => editTransaction(e)}
+					deleteTransaction={(e) => deleteTransaction(e)}
+				/>
+				<div className='popupBG' style={{ display: popupDisplay }}>
+					<div className='popup' style={{ display: popupDisplay }}>
+						<TransactionForm
+							categories={categories}
+							id={popupData.id}
+							date={popupData.date}
+							description={popupData.description}
+							category={popupData.category}
+							amount={popupData.amount}
+							type={popupData.type}
+							title='Change transaction'
+							buttonText='Save'
+							onFetch={fetchPatchTransaction}
+							onClose={setPopupDisplay}
+							transactions={transactions}
+							setTransactions={setTransactions}
+						/>
+					</div>
+				</div>
+			</div>
+		</main>
+	);
 }
 
 export default App;
