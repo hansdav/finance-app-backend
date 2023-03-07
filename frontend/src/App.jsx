@@ -35,11 +35,12 @@ function App() {
 		);
 	}
 
-	function deleteTransaction(e) {
+	async function deleteTransaction(e) {
 		console.log(e.target.id);
 		let array = e.target.id.split('-');
 		console.log(array[array.length - 1]);
-		fetchDeleteTransaction(array[array.length - 1]);
+		await fetchDeleteTransaction(array[array.length - 1]);
+		setTransactions(await fetchTransactions(transactions));
 	}
 
 	const [transactions, setTransactions] = useState([]);
@@ -73,6 +74,7 @@ function App() {
 					<Filter onSetFiltersData={setTransactions} />
 					<TransactionForm
 						categories={categories}
+						id=''
 						date=''
 						description=''
 						category=''
@@ -83,6 +85,8 @@ function App() {
 						onFetch={fetchAddTransaction}
 						onClose={setPopupDisplay}
 					/>
+					transactions={transactions}
+					setTransactions={setTransactions}
 				</div>
 				<TransactionsDisplay
 					transactions={transactions}
@@ -104,6 +108,8 @@ function App() {
 							buttonText='Save'
 							onFetch={fetchPatchTransaction}
 							onClose={setPopupDisplay}
+							transactions={transactions}
+							setTransactions={setTransactions}
 						/>
 					</div>
 				</div>
