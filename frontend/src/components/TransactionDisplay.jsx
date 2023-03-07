@@ -3,7 +3,7 @@ import "./TransactionDisplay.css";
 
 export default function TransactionDisplay(props) {
   function styleAmount() {
-    if (props.type === "Expense") {
+    if (props.type.toLowerCase() === "expense") {
       return "red";
     } else {
       return "green";

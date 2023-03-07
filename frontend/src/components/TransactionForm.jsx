@@ -58,6 +58,7 @@ export default function TransactionForm(props) {
           onChange={(e) => setType(e.target.value)}
           defaultValue={type}
         >
+          <option selected hidden>Choose type</option>
           <option>Income</option>
           <option>Expense</option>
         </select>
@@ -65,12 +66,12 @@ export default function TransactionForm(props) {
         <select
           className="TransactionForm-category"
           onChange={(e) => setCategory(e.target.value)}
-          value={category}
+          defaultValue={category}
         >
           {props.categories.map((category) => {
             return <option key={category.id}>{category.name}</option>;
           })}
-          <option>Create new category</option>
+          
         </select>
       </form>
       <button

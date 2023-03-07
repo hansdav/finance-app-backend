@@ -79,7 +79,7 @@ function App() {
 						description=''
 						category=''
 						amount=''
-						type=''
+						type='Income'
 						title='Add new transaction'
 						buttonText='Add transaction'
 						onFetch={fetchAddTransaction}
