@@ -2,16 +2,16 @@
     {
         "id": 1,
         "name": "salary",
-        "color": "green"
+        "color": "rgba(0, 55, 55, 0.3)"
     },
     {
         "id": 2,
         "name": "rent",
-        "color": "blue"
+        "color": "rgba(55, 0, 55, 0.3)"
     },
     {
         "id": 3,
         "name": "groceries",
-        "color": "red"
+        "color": "rgba(0, 55, 0, 0.3)"
     }
 ]

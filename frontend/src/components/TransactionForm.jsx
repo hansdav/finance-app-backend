@@ -22,7 +22,6 @@ export default function TransactionForm(props) {
     }
     await props.onFetch(object)
     props.onClose("none")
-
     props.setTransactions(await fetchTransactions(props.transactions));
 
   }
