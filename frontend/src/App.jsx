@@ -1,29 +1,39 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
-import TransactionsDisplay from "./components/TransactionsDisplay";
-import TransactionForm from "./components/TransactionForm";
-import Filter from "./components/Filter";
-import fetchCategories from "./api/fetchCategories";
-import fetchTransactions from "./api/fetchTransactions";
-import fetchDeleteTransaction from "./api/fetchDeleteTransaction";
-import fetchAddTransaction from "./api/fetchAddTransaction";
-import fetchPatchTransaction from "./api/fetchPatchTransaction";
+import React, { useState, useEffect } from 'react';
+import './App.css';
+import TransactionsDisplay from './components/TransactionsDisplay';
+import TransactionForm from './components/TransactionForm';
+import Filter from './components/Filter';
+import fetchCategories from './api/fetchCategories';
+import fetchTransactions from './api/fetchTransactions';
+import fetchDeleteTransaction from './api/fetchDeleteTransaction';
+import fetchAddTransaction from './api/fetchAddTransaction';
+import fetchPatchTransaction from './api/fetchPatchTransaction';
 
 function App() {
-  const [popupDisplay, setPopupDisplay] = useState("none");
-  const [popupData, setPopupData] = useState({
-    id:"",
-    date:"",
-    description:"",
-    category:"",
-    amount:"",
-    type:""
-})
-  function editTransaction(e) {
-    setPopupDisplay("block");
-    console.log(transactions.filter((transaction) => Number(transaction.id) === Number(e.target.id.split("-")[1]))[0])
-    setPopupData(transactions.filter((transaction) => Number(transaction.id) === Number(e.target.id.split("-")[1]))[0]);
-  }
+	const [popupDisplay, setPopupDisplay] = useState('none');
+	const [popupData, setPopupData] = useState({
+		id: '',
+		date: '',
+		description: '',
+		category: '',
+		amount: '',
+		type: '',
+	});
+	function editTransaction(e) {
+		setPopupDisplay('block');
+		console.log(
+			transactions.filter(
+				(transaction) =>
+					Number(transaction.id) === Number(e.target.id.split('-')[1])
+			)[0]
+		);
+		setPopupData(
+			transactions.filter(
+				(transaction) =>
+					Number(transaction.id) === Number(e.target.id.split('-')[1])
+			)[0]
+		);
+	}
 
   async function deleteTransaction(e) {
     console.log(e.target.id);
@@ -33,22 +43,27 @@ function App() {
     setTransactions(await fetchTransactions(transactions))
   }
 
-  const [transactions, setTransactions] = useState([]);
-  const [categories, setCategories] = useState([]);
+	const [transactions, setTransactions] = useState([]);
+	const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    async function loadCategories() {
-      setCategories(await fetchCategories(categories));
-    }
-    loadCategories();
-  }, []);
+	const budget = transactions
+		.map((transaction) => transaction.amount)
+		.reduce((a, b) => a + b, 0);
+	console.log(budget);
 
-  useEffect(() => {
-    async function loadTransactions() {
-      setTransactions(await fetchTransactions(transactions));
-    }
-    loadTransactions();
-  }, []);
+	useEffect(() => {
+		async function loadCategories() {
+			setCategories(await fetchCategories(categories));
+		}
+		loadCategories();
+	}, []);
+
+	useEffect(() => {
+		async function loadTransactions() {
+			setTransactions(await fetchTransactions(transactions));
+		}
+		loadTransactions();
+	}, []);
 
   return (
     <main>
@@ -56,7 +71,7 @@ function App() {
       <div className="financeManagerApp">
         <div className="menu">
           <Filter onSetFiltersData={setTransactions} />
-          <TransactionForm
+          <TransactionForm 
             categories={categories}
             date=""
             description=""
