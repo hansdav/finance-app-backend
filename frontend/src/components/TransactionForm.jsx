@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./TransactionForm.css";
+import fetchTransactions from "../api/fetchTransactions";
 //import fetchAddTransaction from "../api/fetchAddTransaction";
 
 export default function TransactionForm(props) {
@@ -10,7 +11,7 @@ export default function TransactionForm(props) {
   const [type, setType] = useState(props.amount);
 
 
-  function onSubmitTransaction() {
+  async function onSubmitTransaction() {
     let object =  {
       id: props.id,
       amount: type === "Income" ? Number(amount) : Number(`-${amount}`),
@@ -19,8 +20,9 @@ export default function TransactionForm(props) {
       type: type,
       category: props.categories.filter((cat) => cat.name === category)[0].id
     }
-    props.onFetch(object)
+    await props.onFetch(object)
     props.onClose("none")
+    props.setTransactions(await fetchTransactions(props.transactions));
   }
 
   return (

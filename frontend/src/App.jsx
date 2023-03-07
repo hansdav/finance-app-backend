@@ -25,11 +25,12 @@ function App() {
     setPopupData(transactions.filter((transaction) => Number(transaction.id) === Number(e.target.id.split("-")[1]))[0]);
   }
 
-  function deleteTransaction(e) {
+  async function deleteTransaction(e) {
     console.log(e.target.id);
     let array = e.target.id.split("-");
     console.log(array[array.length - 1]);
-    fetchDeleteTransaction(array[array.length - 1]);
+    await fetchDeleteTransaction(array[array.length - 1]);
+    setTransactions(await fetchTransactions(transactions))
   }
 
   const [transactions, setTransactions] = useState([]);
@@ -55,7 +56,7 @@ function App() {
       <div className="financeManagerApp">
         <div className="menu">
           <Filter onSetFiltersData={setTransactions} />
-          <TransactionForm 
+          <TransactionForm
             categories={categories}
             date=""
             description=""
@@ -65,7 +66,9 @@ function App() {
             title="Add new transaction"
             buttonText="Add transaction" 
             onFetch={fetchAddTransaction}
-            onClose={setPopupDisplay}/>
+            onClose={setPopupDisplay}
+            transactions={transactions}
+            setTransactions={setTransactions}/>
         </div>
         <TransactionsDisplay
           transactions={transactions}
