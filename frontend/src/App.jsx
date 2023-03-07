@@ -82,9 +82,9 @@ function App() {
             title="Add new transaction"
             buttonText="Add transaction" 
             onFetch={fetchAddTransaction}
-            onClose={setPopupDisplay}/>
+            onClose={setPopupDisplay}
             transactions={transactions}
-            setTransactions={setTransactions} 
+            setTransactions={setTransactions} />
         </div>
         <TransactionsDisplay
           transactions={transactions}
