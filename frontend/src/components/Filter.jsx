@@ -86,6 +86,7 @@ export default function Filter(props) {
           onChange={(e) => setCategory(e.target.value)}
         />
       </form>
+      <hr style={{color: "rgba(55, 0, 55, 0.1)", width: "250px", marginLeft: "18px"}}/>
       <button className="filterButton" onClick={() => submitFilter()}>
         Filter
       </button>
