@@ -68,6 +68,9 @@ function App() {
     loadTransactions();
   }, []);
 
+  if (categories.length === 0) {
+	return <div>loading</div>
+  } 
 	return (
 		<main>
 			<h1>Finance Manager App</h1>
@@ -82,7 +85,7 @@ function App() {
 						description=''
 						category=''
 						amount=''
-						type='Income'
+						type='All'
 						title='Add new transaction'
 						buttonText='Add transaction'
 						onFetch={fetchAddTransaction}

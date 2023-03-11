@@ -10,7 +10,7 @@ export default function Filter(props) {
   const [date, setDate] = useState("");
   const [amountButtonText, setAmountButtonText] = useState("Amount ▼");
   const [dateButtonText, setDateButtonText] = useState("Date ▼");
-
+/*
   async function submitFilter() {
     let sortedAmount = await fetchTransactions({
       type: type,
@@ -21,7 +21,7 @@ export default function Filter(props) {
     });
     console.log("sortedAm" +sortedAmount)
     await props.onSetFiltersData(sortedAmount);
-  }
+  }*/
 
   useEffect(() => {
     async function submitFilter() {
@@ -38,7 +38,8 @@ export default function Filter(props) {
     submitFilter();
   }, [type, description, category, amount, date]);
 
-  async function filterType(e) {
+  //async
+  function filterType(e) {
     console.log("e"+e.target.value)
     setType(e.target.value);
     //await submitFilter();

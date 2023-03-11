@@ -4,7 +4,7 @@ const fetchTransactions = async (parameters) => {
 
     console.log(parameters)
 
-    if(parameters.type !== undefined && parameters.type !== "") {
+    if(parameters.type !== undefined && parameters.type !== "" && parameters.type !== "All") {
         url = `${baseUrl}?type=${parameters.type}`
     } else if(parameters.description !== undefined && parameters.description !== "") {
         url = `${baseUrl}?description=${parameters.description}`
@@ -18,7 +18,7 @@ const fetchTransactions = async (parameters) => {
         url = baseUrl
     }
 
-    if (parameters.type !== undefined && !url.includes("?type") && parameters.type !== "") {
+    if (parameters.type !== undefined && !url.includes("?type") && parameters.type !== "" && parameters.type !== "All") {
         url = `${url}&type=${parameters.type}` 
     } 
     if (parameters.description !== undefined && !url.includes("?description") && parameters.description !== "") {
