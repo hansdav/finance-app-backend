@@ -12,6 +12,7 @@ export default function TransactionForm(props) {
 
 
   async function onSubmitTransaction() {
+    console.log(props.categories)
     let object =  {
       id: props.id,
       amount: type === "Income" ? Number(amount) : Number(`-${amount}`),

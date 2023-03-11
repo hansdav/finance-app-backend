@@ -10,13 +10,13 @@ export default function TransactionChangeForm(props) {
     date: props.date,
     description: props.description,
     type: props.type, 
-    category: props.category
+    category: props.categories.filter((cat) => cat.id === props.category)[0].name
   }) 
 
   async function onSubmitTransaction() {
     let object = {
       id: props.id,
-      amount: data.type === "Income" ? Number(data.amount) : Number(`-${data.amount}`),
+      amount: data.type === "Income" ? Number(Math.abs(data.amount)) : Number(data.amount*-1),
       date: data.date,
       description: data.description,
       type: data.type,
@@ -59,9 +59,7 @@ export default function TransactionChangeForm(props) {
           value={data.type}
           onChange={(e) => setData({...data, type: e.target.value})}
         >
-          <option selected hidden>
-            Choose type
-          </option>
+          
           <option>Income</option>
           <option>Expense</option>
         </select>
