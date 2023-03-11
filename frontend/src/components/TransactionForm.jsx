@@ -49,7 +49,7 @@ export default function TransactionForm(props) {
         />
         <br />
         <input
-          type="text"
+          type="number"
           placeholder="Enter amount"
           className="TransactionForm-amount"
           value={amount}
