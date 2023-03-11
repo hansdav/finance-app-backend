@@ -32,7 +32,6 @@ export default function Filter(props) {
         amount: amount,
         date: date,
       });
-      console.log("sortedAm" +sortedAmount)
       await props.onSetFiltersData(sortedAmount);
     }
     submitFilter();

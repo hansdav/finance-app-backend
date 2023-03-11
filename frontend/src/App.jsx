@@ -74,7 +74,7 @@ function App() {
 	return (
 		<main>
 			<h1>Finance Manager App</h1>
-			<div id='budget'>Current budget: {budget}</div>
+			<div id='budget'>Current budget: {budget.toFixed(2)}</div>
 			<div className='financeManagerApp'>
 				<div className='menu'>
 					<Filter onSetFiltersData={setTransactions} />
