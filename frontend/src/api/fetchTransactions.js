@@ -2,8 +2,6 @@ const fetchTransactions = async (parameters) => {
     let baseUrl = "http://localhost:3000/api/transactions"
     let url;
 
-    console.log(parameters)
-
     if(parameters.type !== undefined && parameters.type !== "" && parameters.type !== "All") {
         url = `${baseUrl}?type=${parameters.type}`
     } else if(parameters.description !== undefined && parameters.description !== "") {
@@ -34,7 +32,6 @@ const fetchTransactions = async (parameters) => {
         url = `${url}&${parameters.date}=date`
     }
 
-    console.log(url)
 
     const res = await fetch(url);
     let data = await res.json();

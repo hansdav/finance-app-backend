@@ -20,8 +20,7 @@ export default function TransactionChangeForm(props) {
       date: data.date,
       description: data.description,
       type: data.type,
-      category: data.category
-      //category: props.categories.filter((cat) => cat.name === category)[0].id,
+      category: props.categories.filter((cat) => cat.name === data.category)[0].id
     };
     await props.onFetch(object);
     props.onClose("none");

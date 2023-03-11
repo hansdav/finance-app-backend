@@ -40,7 +40,6 @@ export default function Filter(props) {
 
   //async
   function filterType(e) {
-    console.log("e"+e.target.value)
     setType(e.target.value);
     //await submitFilter();
   } 
