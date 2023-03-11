@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import TransactionsDisplay from "./components/TransactionsDisplay";
 import TransactionForm from "./components/TransactionForm";
+import TransactionChangeForm from "./components/TransactionChangeForm";
 import Filter from "./components/Filter";
 import fetchCategories from "./api/fetchCategories";
 import fetchTransactions from "./api/fetchTransactions";
@@ -12,13 +13,13 @@ import fetchPatchTransaction from "./api/fetchPatchTransaction";
 function App() {
   const [popupDisplay, setPopupDisplay] = useState("none");
   const [popupData, setPopupData] = useState({
-    id: "",
-    date: "",
-    description: "",
-    category: "",
-    amount: "",
-    type: "",
-  });
+	id: "",
+  	date: "",
+  	description: "",
+  	category: "",
+  	amount: "",
+  	type: ""});
+
   function editTransaction(e) {
     setPopupDisplay("block");
     console.log(
@@ -27,13 +28,15 @@ function App() {
           Number(transaction.id) === Number(e.target.id.split("-")[1])
       )[0]
     );
-    setPopupData(
+    setPopupData({...
       transactions.filter(
         (transaction) =>
           Number(transaction.id) === Number(e.target.id.split("-")[1])
-      )[0]
+      )[0]}
     );
+	console.log(popupData)
   }
+  console.log(popupData)
 
   async function deleteTransaction(e) {
     console.log(e.target.id);
@@ -94,9 +97,10 @@ function App() {
 					editTransaction={(e) => editTransaction(e)}
 					deleteTransaction={(e) => deleteTransaction(e)}
 				/>
+				{ popupDisplay === "block" ?
 				<div className='popupBG' style={{ display: popupDisplay }}>
 					<div className='popup' style={{ display: popupDisplay }}>
-						<TransactionForm
+						<TransactionChangeForm
 							categories={categories}
 							id={popupData.id}
 							date={popupData.date}
@@ -110,9 +114,10 @@ function App() {
 							onClose={setPopupDisplay}
 							transactions={transactions}
 							setTransactions={setTransactions}
-						/>
+						/> 
 					</div>
 				</div>
+				: null}
 			</div>
 		</main>
 	);

@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import "./Filter.css";
 import fetchTransactions from "../api/fetchTransactions";
 
 export default function Filter(props) {
-  const [type, setType] = useState();
-  const [description, setDescription] = useState();
-  const [category, setCategory] = useState();
+  const [type, setType] = useState("All");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const [amountButtonText, setAmountButtonText] = useState("Amount ▼");
@@ -19,16 +19,33 @@ export default function Filter(props) {
       amount: amount,
       date: date,
     });
-    props.onSetFiltersData(sortedAmount);
+    console.log("sortedAm" +sortedAmount)
+    await props.onSetFiltersData(sortedAmount);
   }
 
-  function filterType(e) {
-    console.log(e.target.value)
-    setType(e.target.value);
+  useEffect(() => {
+    async function submitFilter() {
+      let sortedAmount = await fetchTransactions({
+        type: type,
+        description: description,
+        category: category,
+        amount: amount,
+        date: date,
+      });
+      console.log("sortedAm" +sortedAmount)
+      await props.onSetFiltersData(sortedAmount);
+    }
     submitFilter();
+  }, [type, description, category, amount, date]);
+
+  async function filterType(e) {
+    console.log("e"+e.target.value)
+    setType(e.target.value);
+    //await submitFilter();
   } 
 
   function sortAmount(e) {
+    console.log(e.target.value)
     if (e.target.value === "sortDescending" || e.target.value === "") {
       setAmount("sortAscending");
       setAmountButtonText("Amount ▲");
@@ -38,7 +55,6 @@ export default function Filter(props) {
       setAmountButtonText("Amount ▼");
       setDate("");
     }
-    submitFilter();
   }
 
   function sortDate(e) {
@@ -51,7 +67,6 @@ export default function Filter(props) {
       setDateButtonText("Date ▼");
       setAmount("");
     }
-    submitFilter();
   }
 
   function reset() {
@@ -60,7 +75,6 @@ export default function Filter(props) {
     setCategory();
     setAmount();
     setDate();
-    submitFilter();
   }
 
   return (

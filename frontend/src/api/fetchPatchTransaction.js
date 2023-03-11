@@ -1,6 +1,6 @@
 const fetchPatchTransaction = async (data) => {
-    console.log(data)
-    console.log(data.id)
+    //console.log(data)
+    //console.log(data.id)
   const res = await fetch(`http://localhost:3000/api/transactions/${data.id}`, {
     method: "PATCH",
     headers: {
