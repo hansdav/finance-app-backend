@@ -12,7 +12,7 @@ export default function TransactionForm(props) {
 
 
   async function onSubmitTransaction() {
-    console.log(props.categories)
+    if(date !== "" && description !== "" && category !== "" && amount !== "") {
     let object =  {
       id: props.id,
       amount: type === "Income" ? Number(amount) : Number(`-${amount}`),
@@ -23,8 +23,10 @@ export default function TransactionForm(props) {
     }
     await props.onFetch(object)
     props.onClose("none")
-    props.setTransactions(await fetchTransactions(props.transactions));
 
+    props.setTransactions(await fetchTransactions(props.transactions));} else {
+      console.log("missing data")
+    }
   }
 
   return (
@@ -47,7 +49,7 @@ export default function TransactionForm(props) {
         />
         <br />
         <input
-          type="text"
+          type="number"
           placeholder="Enter amount"
           className="TransactionForm-amount"
           value={amount}
